@@ -1,72 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Классический Тетрис</title>
+  <title>Tank 8-bit Arena</title>
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <main class="layout">
-    <section class="game-panel">
-      <div class="panel-header">
-        <h1>Тетрис</h1>
-        <div class="status-row">
-          <span class="pill" id="game-state">Идет игра</span>
-        </div>
-      </div>
-      <canvas id="board" width="300" height="600" aria-label="Игровое поле тетриса"></canvas>
-      <div id="controls-overlay" class="controls-overlay hidden" aria-hidden="true">
-        <div class="controls-modal">
-          <h3>Управление</h3>
-          <p>← / → — движение</p>
-          <p>↓ — ускорить падение</p>
-          <p>↑ — поворот фигуры</p>
-          <p>Пробел — мгновенно вниз</p>
-          <p>P или Esc — пауза</p>
-          <button id="controls-close" type="button" class="text-btn">Закрыть</button>
-        </div>
-      </div>
+  <div class="app">
+    <section class="game-column">
+      <header class="top-bar">
+        <span id="scoreTop">SCORE: 0</span>
+        <span id="livesTop">❤❤❤❤❤❤❤❤❤❤</span>
+        <span id="worldTop">WORLD 1-1</span>
+      </header>
+      <canvas id="gameCanvas" width="960" height="576"></canvas>
+      <footer class="bottom-bar">
+        <span id="bonusText">BONUS TIME: 0:45</span>
+        <span id="streakText">STREAK: 0</span>
+      </footer>
     </section>
-
-    <aside class="side-panel">
-      <div class="card">
-        <h2>Следующая фигура</h2>
-        <canvas id="next-piece" width="120" height="120" aria-label="Следующая фигура"></canvas>
+    <aside class="hud">
+      <h3>MODE</h3>
+      <div class="btn-row">
+        <button type="button" id="modeCampaignBtn" class="ui-btn active">CAMPAIGN</button>
+        <button type="button" id="modeDuelBtn" class="ui-btn">1 vs 1</button>
       </div>
 
-      <div class="card stats">
-        <h2>Статистика</h2>
-        <p>Счёт: <span id="score">0</span></p>
-        <p>Линии: <span id="lines">0</span></p>
-        <p>Уровень: <span id="level">1</span></p>
+      <h3>PLAYER</h3>
+      <input id="playerNameInput" class="ui-input" type="text" value="P1" maxlength="12">
+      <label class="ui-label">P1 COLOR <input id="playerColorInput" type="color" value="#8bc34a"></label>
+      <input id="player2NameInput" class="ui-input" type="text" value="P2" maxlength="12">
+      <label class="ui-label">P2 COLOR <input id="player2ColorInput" type="color" value="#42a5f5"></label>
+      <label class="ui-label">ENEMY COLOR <input id="enemyColorInput" type="color" value="#d84315"></label>
+      <label class="ui-label">DIFFICULTY <input id="difficultyRange" type="range" min="1" max="3" value="1"></label>
+      <p id="difficultyText">EASY</p>
+      <label class="ui-label">ENEMIES <input id="enemyCountRange" type="range" min="6" max="30" value="10"></label>
+      <p id="enemyCountText">10</p>
+
+      <h3>MAP</h3>
+      <div class="btn-row">
+        <button type="button" id="mapGrassBtn" class="ui-btn active">FOREST</button>
+        <button type="button" id="mapDesertBtn" class="ui-btn">DESERT</button>
       </div>
 
-      <div class="card">
-        <h2>Настройки</h2>
-        <label class="theme-row" for="theme-select">
-          <span>Тема</span>
-          <select id="theme-select">
-            <option value="dark">Тёмная</option>
-            <option value="light">Светлая</option>
-          </select>
-        </label>
-        <label class="toggle" for="sound-toggle">
-          <input id="sound-toggle" type="checkbox" checked>
-          <span>Звуки</span>
-        </label>
-      </div>
+      <h3>HEARTS</h3>
+      <p id="heartsHud" class="hearts-row">❤❤❤❤❤❤❤❤❤❤</p>
+      <h3>AMMO</h3>
+      <p id="ammoText">∞</p>
+      <h3>SCORE</h3>
+      <p id="scoreSide">0</p>
+      <h3 id="p1Label">P1</h3>
+      <p id="p1Info">SCORE: 0</p>
 
-      <div class="card">
-        <button id="start-btn" type="button" class="action-btn action-btn-primary">Новая игра</button>
-        <button id="pause-btn" type="button" class="action-btn action-btn-primary side-btn" aria-label="Пауза">Пауза</button>
-        <button id="controls-toggle" type="button" class="action-btn action-btn-primary side-btn" aria-expanded="false">
-          Управление
-        </button>
+      <div class="controls">
+        <button id="helpBtn" title="Help">?</button>
+        <button id="pauseBtn">PAUSE</button>
+        <button id="restartBtn">RESTART</button>
       </div>
     </aside>
-  </main>
+  </div>
 
+  <div id="helpModal" class="help-modal hidden" aria-hidden="true">
+    <div class="help-panel">
+      <button id="helpCloseBtn" class="help-close" title="Close">x</button>
+      <h3>Описание</h3>
+      <p>Привет это игра про танки, в ней есть 2 режима, 1 на счет, 1 на 1.</p>
+      <p>Управление: движение-wasd, ехать медленее- зажать shift.</p>
+    </div>
+  </div>
   <script src="./game.js"></script>
 </body>
 </html>
