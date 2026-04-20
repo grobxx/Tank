@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Классический Тетрис</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="layout">
+    <section class="game-panel">
+      <div class="panel-header">
+        <h1>Тетрис</h1>
+        <div class="status-row">
+          <span class="pill" id="game-state">Идет игра</span>
+        </div>
+      </div>
+      <canvas id="board" width="300" height="600" aria-label="Игровое поле тетриса"></canvas>
+      <div id="controls-overlay" class="controls-overlay hidden" aria-hidden="true">
+        <div class="controls-modal">
+          <h3>Управление</h3>
+          <p>← / → — движение</p>
+          <p>↓ — ускорить падение</p>
+          <p>↑ — поворот фигуры</p>
+          <p>Пробел — мгновенно вниз</p>
+          <p>P или Esc — пауза</p>
+          <button id="controls-close" type="button" class="text-btn">Закрыть</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="side-panel">
+      <div class="card">
+        <h2>Следующая фигура</h2>
+        <canvas id="next-piece" width="120" height="120" aria-label="Следующая фигура"></canvas>
+      </div>
+
+      <div class="card stats">
+        <h2>Статистика</h2>
+        <p>Счёт: <span id="score">0</span></p>
+        <p>Линии: <span id="lines">0</span></p>
+        <p>Уровень: <span id="level">1</span></p>
+      </div>
+
+      <div class="card">
+        <h2>Настройки</h2>
+        <label class="theme-row" for="theme-select">
+          <span>Тема</span>
+          <select id="theme-select">
+            <option value="dark">Тёмная</option>
+            <option value="light">Светлая</option>
+          </select>
+        </label>
+        <label class="toggle" for="sound-toggle">
+          <input id="sound-toggle" type="checkbox" checked>
+          <span>Звуки</span>
+        </label>
+      </div>
+
+      <div class="card">
+        <button id="start-btn" type="button" class="action-btn action-btn-primary">Новая игра</button>
+        <button id="pause-btn" type="button" class="action-btn action-btn-primary side-btn" aria-label="Пауза">Пауза</button>
+        <button id="controls-toggle" type="button" class="action-btn action-btn-primary side-btn" aria-expanded="false">
+          Управление
+        </button>
+      </div>
+    </aside>
+  </main>
+
+  <script src="./game.js"></script>
+</body>
+</html>
