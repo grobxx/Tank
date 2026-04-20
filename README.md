@@ -1,31 +1,46 @@
-# Tetris Web
+# Tank 8-bit Arena
 
-Classic Tetris for browser with modern UI.
+Браузерная аркада про танки в ретро-стиле с двумя режимами:
 
-## Features
+- **Campaign** — игрок против волн вражеских танков.
+- **1 vs 1** — локальная дуэль на одном компьютере (горячий стул).
 
-- Classic 10x20 game board
-- Next piece preview
-- Score, lines and level system
-- Pause (`P`, `Esc`, or button)
-- Sound effects with on/off toggle
-- Controls help modal
-- Light and dark theme switcher
+## Возможности
 
-## Run locally
+- Пиксельная 2D-графика и HUD-панель.
+- Карты `FOREST` и `DESERT`.
+- Постепенный спавн врагов из угловых туннелей.
+- Регулировка сложности и количества врагов.
+- Полоска здоровья (сердца), бесконечные патроны.
+- Всплывающая справка по кнопке `?`.
+
+## Запуск
 
 ```bash
+cd /Users/aleksey.gimatdinov/Documents/Games/tank_8bit_web
 python3 -m http.server 8080
 ```
 
-Then open:
+Открой в браузере:
 
 `http://localhost:8080`
 
-## Controls
+## Управление
 
-- `←` / `→`: move
-- `↓`: soft drop
-- `↑`: rotate
-- `Space`: hard drop
-- `P` / `Esc`: pause
+### Campaign
+
+- `W/A/S/D` или `↑/←/↓/→` — движение танка.
+- `Shift` — ехать медленнее.
+- `Space` — выстрел.
+- `P` — пауза.
+
+### 1 vs 1
+
+- **Игрок 1:** `W/A/S/D` + `Space`.
+- **Игрок 2:** `↑/←/↓/→` + `Enter`.
+
+## Технологии
+
+- HTML
+- CSS
+- Vanilla JavaScript
